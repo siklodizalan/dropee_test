@@ -144,7 +144,7 @@ const userBoxData = computed(() => {
   return boxData.map((box) => {
     const storedBox = boxes.value.find((b) => b.id === box.id) || {
       id: box.id,
-      count: 0,
+      count: box.id === 1 ? 1 : 0,
     };
     return { ...box, ...storedBox };
   });
@@ -164,7 +164,6 @@ const openedBox = ref<Box | null>(null);
 
 function buyMisteryBox(boxId: number) {
   boxPurchasedModal.value = true;
-  console.log("buy mistery box");
   boxStore.updateBoxCount(boxId, 1);
 }
 
